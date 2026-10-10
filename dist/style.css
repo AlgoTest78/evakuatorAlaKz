@@ -1,0 +1,1621 @@
+
+/* ===================================
+   1. ОСНОВА И ЦВЕТА
+=================================== */
+
+:root {
+    --yellow: #ffdb58;
+    --orange: #ff9b4a;
+    --pink: #ff64bc;
+    --purple: #8658ef;
+    --blue: #4e75ff;
+    --dark: #17121d;
+    --white: #fffdf9;
+    --muted: #49414e;
+    --font-display: "Special Elite", Georgia, serif;
+    --font-body: "Inter", Arial, sans-serif;
+    --radius: 24px;
+    --shadow: 0 15px 45px rgba(48, 22, 63, 0.12);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 25px;
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--dark);
+    background: #ffce61;
+    overflow-x: hidden;
+    line-height: 1.65;
+}
+
+body,
+button,
+input {
+    -webkit-tap-highlight-color: transparent;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button,
+a {
+    touch-action: manipulation;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+    outline: 3px solid #17121d;
+    outline-offset: 4px;
+}
+
+.container {
+    width: min(1180px, calc(100% - 48px));
+    margin-inline: auto;
+}
+
+.section-padding {
+    padding: 100px 0;
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--font-display);
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+h1 {
+    font-size: clamp(42px, 6.5vw, 82px);
+    letter-spacing: -2px;
+}
+
+h2 {
+    font-size: clamp(34px, 4.5vw, 56px);
+    letter-spacing: -1px;
+}
+
+h3 {
+    font-size: 23px;
+}
+
+p {
+    line-height: 1.8;
+}
+
+/* ===================================
+   2. ЖИВОЙ ФОН
+=================================== */
+
+body {
+    background:
+        linear-gradient(
+            125deg,
+            #ffdb58 0%,
+            #ff9b68 30%,
+            #ff72c3 65%,
+            #8271ff 100%
+        );
+    background-size: 250% 250%;
+    animation: backgroundFlow 18s ease-in-out infinite alternate;
+}
+
+.background-glow {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.glow {
+    position: absolute;
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    filter: blur(85px);
+    opacity: 0.34;
+    animation: glowMove 16s ease-in-out infinite alternate;
+}
+
+.glow-1 {
+    background: #fff38a;
+    top: 5%;
+    left: -160px;
+}
+
+.glow-2 {
+    background: #ff4cb9;
+    top: 40%;
+    right: -170px;
+    animation-delay: -5s;
+}
+
+.glow-3 {
+    background: #7062ff;
+    bottom: -180px;
+    left: 25%;
+    animation-delay: -9s;
+}
+
+@keyframes backgroundFlow {
+    0% {
+        background-position: 0% 0%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 100%;
+    }
+}
+
+@keyframes glowMove {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    50% {
+        transform: translate(100px, 60px) scale(1.2);
+    }
+    100% {
+        transform: translate(-40px, -70px) scale(0.9);
+    }
+}
+
+/* ===================================
+   3. ШАПКА И НАВИГАЦИЯ
+=================================== */
+
+.header {
+    position: relative;
+    z-index: 10;
+    background: rgba(255, 200, 75, 0.34);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(14px);
+}
+
+.header-top {
+    min-height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    position: relative;
+}
+
+.logo {
+    font-family: var(--font-display);
+    font-size: clamp(20px, 2.3vw, 29px);
+    font-weight: 900;
+    white-space: nowrap;
+    transition: transform 0.3s;
+}
+
+.logo:hover {
+    transform: rotate(-2deg) scale(1.04);
+}
+
+.logo span {
+    display: inline-block;
+}
+
+.header-phone {
+    font-size: 14px;
+    font-weight: 800;
+    margin-left: auto;
+    transition: color 0.25s;
+}
+
+.header-phone:hover {
+    color: #fff;
+}
+
+.whatsapp {
+    width: 65px;
+    height: 65px;
+    position: relative;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+}
+
+.whatsapp img {
+    width: 58px;
+    height: 58px;
+    object-fit: contain;
+    position: relative;
+    z-index: 2;
+    animation: whatsappBounce 3s ease-in-out infinite;
+}
+
+.whatsapp-pulse {
+    position: absolute;
+    inset: 3px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    animation: pulse 2s ease-out infinite;
+}
+
+@keyframes whatsappBounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.7); opacity: 0.8; }
+    100% { transform: scale(1.6); opacity: 0; }
+}
+
+.header-truck {
+    width: 115px;
+    height: 80px;
+    object-fit: contain;
+    animation: truckBob 3s ease-in-out infinite;
+}
+
+@keyframes truckBob {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(-5px) rotate(1deg); }
+}
+
+.nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(12px, 3vw, 42px);
+    padding: 12px 0 17px;
+}
+
+.nav a {
+    min-width: 105px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(40, 25, 45, 0.12);
+    border-radius: 50px;
+    padding: 9px 19px;
+    font-size: 13px;
+    font-weight: 700;
+    box-shadow: 0 4px 0 #342a36;
+    transition:
+        transform 0.25s,
+        box-shadow 0.25s,
+        background 0.25s;
+}
+
+.nav a:hover {
+    background: var(--dark);
+    color: white;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 0 rgba(52, 42, 54, 0.45);
+}
+
+/* ===================================
+   4. КНОПКИ
+=================================== */
+
+.btn {
+    min-height: 54px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 13px;
+    padding: 15px 25px;
+    border: 2px solid var(--dark);
+    border-radius: 50px;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    transition:
+        transform 0.25s,
+        box-shadow 0.25s,
+        background 0.25s,
+        color 0.25s;
+}
+
+.btn span {
+    font-size: 19px;
+    transition: transform 0.25s;
+}
+
+.btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 0 rgba(23, 18, 29, 0.18);
+}
+
+.btn:hover span {
+    transform: translate(3px, -3px);
+}
+
+.btn:active {
+    transform: translateY(1px) scale(0.98);
+    box-shadow: none;
+}
+
+.btn-dark {
+    background: var(--dark);
+    color: white;
+}
+
+.btn-dark:hover {
+    background: #3b2b47;
+}
+
+.btn-light {
+    background: rgba(255, 255, 255, 0.75);
+    color: var(--dark);
+}
+
+.btn-light:hover {
+    background: white;
+}
+
+/* ===================================
+   5. ГЛАВНЫЙ ЭКРАН
+=================================== */
+
+.hero {
+    min-height: 610px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: 30px;
+}
+
+.hero-text {
+    position: relative;
+    z-index: 2;
+    animation: fadeUp 0.9s both;
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 22px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.status-dot {
+    width: 9px;
+    height: 9px;
+    background: #32a85d;
+    border-radius: 50%;
+    box-shadow: 0 0 0 5px rgba(50, 168, 93, 0.16);
+    animation: statusBlink 1.7s infinite;
+}
+
+@keyframes statusBlink {
+    50% { box-shadow: 0 0 0 10px rgba(50, 168, 93, 0); }
+}
+
+.hero h1 span {
+    display: block;
+    color: #fff;
+    text-shadow: 3px 4px 0 rgba(43, 24, 43, 0.15);
+}
+
+.hero-description {
+    max-width: 600px;
+    margin: 24px 0;
+    font-size: 17px;
+    color: #2f2533;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+}
+
+.hero-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 22px;
+    margin-top: 26px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.hero-image {
+    min-height: 410px;
+    display: grid;
+    place-items: center;
+    position: relative;
+}
+
+.main-truck {
+    width: 115%;
+    max-width: 590px;
+    object-fit: contain;
+    position: relative;
+    z-index: 2;
+    animation: truckFloat 4.5s ease-in-out infinite;
+    filter: drop-shadow(0 24px 18px rgba(60, 34, 54, 0.15));
+}
+
+@keyframes truckFloat {
+    0%, 100% { transform: translateY(0) rotate(-1deg); }
+    50% { transform: translateY(-13px) rotate(1deg); }
+}
+
+.image-orbit {
+    position: absolute;
+    width: 340px;
+    height: 340px;
+    border: 1px solid rgba(255, 255, 255, 0.55);
+    border-radius: 50%;
+    animation: orbitSpin 18s linear infinite;
+}
+
+.orbit-one {
+    width: 360px;
+    height: 360px;
+}
+
+.orbit-two {
+    width: 430px;
+    height: 280px;
+    transform: rotate(-30deg);
+    animation-direction: reverse;
+}
+
+@keyframes orbitSpin {
+    to { transform: rotate(360deg); }
+}
+
+.image-bubble {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: absolute;
+    right: -5px;
+    top: 10%;
+    z-index: 3;
+    padding: 14px 19px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.87);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(10px);
+    animation: bubbleFloat 3s ease-in-out infinite;
+}
+
+.image-bubble > span {
+    font-size: 28px;
+}
+
+.image-bubble strong,
+.image-bubble small {
+    display: block;
+}
+
+.image-bubble strong {
+    font-size: 13px;
+}
+
+.image-bubble small {
+    color: var(--muted);
+    font-size: 11px;
+}
+
+@keyframes bubbleFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-7px); }
+}
+
+.scroll-down {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    width: 36px;
+    height: 36px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+    font-size: 22px;
+    animation: arrowDown 1.7s ease-in-out infinite;
+}
+
+@keyframes arrowDown {
+    0%, 100% { transform: translate(-50%, 0); }
+    50% { transform: translate(-50%, 7px); }
+}
+
+/* ===================================
+   6. ЗАГОЛОВКИ СЕКЦИЙ
+=================================== */
+
+.section-heading {
+    max-width: 760px;
+    margin: 0 auto 50px;
+    text-align: center;
+}
+
+.section-heading .eyebrow {
+    margin-bottom: 15px;
+}
+
+.section-heading h2 {
+    margin-bottom: 18px;
+}
+
+.section-heading p {
+    max-width: 650px;
+    margin-inline: auto;
+    font-size: 15px;
+    color: #352c3b;
+}
+
+/* ===================================
+   7. ПРОБЛЕМЫ
+=================================== */
+
+.problems {
+    background: linear-gradient(
+        125deg,
+        rgba(255, 104, 191, 0.68),
+        rgba(255, 217, 88, 0.72)
+    );
+}
+
+.problems-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.problem-card {
+    padding: 28px 23px;
+    border: 1px solid rgba(255, 255, 255, 0.68);
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.36);
+    box-shadow: 0 8px 25px rgba(54, 25, 64, 0.05);
+    backdrop-filter: blur(10px);
+    transition:
+        transform 0.35s,
+        box-shadow 0.35s,
+        background 0.35s;
+}
+
+.problem-card:hover {
+    transform: translateY(-10px) rotate(-1deg);
+    background: rgba(255, 255, 255, 0.75);
+    box-shadow: var(--shadow);
+}
+
+.card-icon {
+    width: 70px;
+    height: 70px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 24px;
+    background: rgba(255, 255, 255, 0.65);
+    border-radius: 20px;
+    transition: transform 0.3s;
+}
+
+.problem-card:hover .card-icon {
+    transform: rotate(-8deg) scale(1.08);
+}
+
+.card-icon img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+}
+
+.problem-card h3 {
+    margin-bottom: 12px;
+    font-size: 21px;
+}
+
+.problem-card p {
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: #3e3544;
+}
+
+.text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.text-link span {
+    font-size: 18px;
+    transition: transform 0.25s;
+}
+
+.text-link:hover span {
+    transform: translate(4px, -4px);
+}
+
+/* ===================================
+   8. УСЛУГИ
+=================================== */
+
+.services {
+    background: linear-gradient(
+        125deg,
+        rgba(83, 111, 255, 0.78),
+        rgba(196, 84, 239, 0.77),
+        rgba(255, 102, 190, 0.78)
+    );
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.service-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: var(--radius);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.87);
+    box-shadow: 0 10px 30px rgba(35, 24, 74, 0.12);
+    transition: transform 0.35s, box-shadow 0.35s;
+}
+
+.service-card:hover {
+    transform: translateY(-9px);
+    box-shadow: 0 25px 55px rgba(35, 24, 74, 0.22);
+}
+
+.service-image {
+    width: 100%;
+    height: 220px;
+    object-fit: contain;
+    padding: 20px;
+    background: linear-gradient(140deg, #ffe28b, #ffacd4);
+    transition: transform 0.5s;
+}
+
+.service-card:hover .service-image {
+    transform: scale(1.05);
+}
+
+.service-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+    padding: 25px;
+}
+
+.service-number {
+    margin-bottom: 15px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.3px;
+    color: #7953cb;
+}
+
+.service-content h3 {
+    margin-bottom: 12px;
+}
+
+.service-content p {
+    flex: 1;
+    margin-bottom: 25px;
+    font-size: 14px;
+    color: var(--muted);
+}
+
+.service-content .btn {
+    min-height: 46px;
+    padding: 10px 20px;
+}
+
+/* ===================================
+   9. ЦЕНЫ
+=================================== */
+
+.prices {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 225, 112, 0.88),
+        rgba(255, 164, 102, 0.83)
+    );
+}
+
+.prices-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    align-items: stretch;
+}
+
+.price-card {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding: 34px 28px;
+    border-radius: var(--radius);
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    background: rgba(255, 255, 255, 0.56);
+    backdrop-filter: blur(12px);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.price-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow);
+}
+
+.price-label {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.price-card h3 {
+    margin-top: 15px;
+}
+
+.price {
+    margin: 20px 0 8px;
+    font-size: clamp(22px, 2.5vw, 32px);
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.price-card > p {
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.price-card ul {
+    display: grid;
+    gap: 12px;
+    list-style: none;
+    margin: 25px 0;
+    font-size: 13px;
+}
+
+.price-card .btn {
+    margin-top: auto;
+}
+
+.price-card-popular {
+    background: rgba(255, 255, 255, 0.88);
+    border: 2px solid var(--dark);
+    transform: translateY(-8px);
+}
+
+.price-card-popular:hover {
+    transform: translateY(-14px);
+}
+
+.popular-label {
+    position: absolute;
+    top: -14px;
+    right: 22px;
+    padding: 6px 13px;
+    background: var(--dark);
+    color: white;
+    border-radius: 30px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.price-note {
+    margin-top: 25px;
+    text-align: center;
+    font-size: 12px;
+    color: #493d44;
+}
+
+/* ===================================
+   10. ЭТАПЫ РАБОТЫ
+=================================== */
+
+.how {
+    background: linear-gradient(
+        130deg,
+        rgba(255, 110, 193, 0.82),
+        rgba(150, 91, 240, 0.82)
+    );
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.step-card {
+    position: relative;
+    padding: 30px 22px;
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.77);
+    transition: transform 0.3s, background 0.3s;
+}
+
+.step-card:hover {
+    transform: translateY(-8px);
+    background: white;
+}
+
+.step-number {
+    position: absolute;
+    top: 14px;
+    right: 20px;
+    font-family: var(--font-display);
+    font-size: 28px;
+    opacity: 0.22;
+}
+
+.step-icon {
+    width: 60px;
+    height: 60px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 24px;
+    background: #ffe58c;
+    border-radius: 18px;
+    font-size: 27px;
+}
+
+.step-card h3 {
+    margin-bottom: 12px;
+    font-size: 19px;
+}
+
+.step-card p {
+    font-size: 13px;
+    color: var(--muted);
+}
+
+/* ===================================
+   11. ОТЗЫВЫ
+=================================== */
+
+.reviews {
+    background: linear-gradient(
+        125deg,
+        rgba(86, 114, 255, 0.85),
+        rgba(192, 92, 234, 0.83)
+    );
+}
+
+.reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.review-card {
+    padding: 26px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: var(--radius);
+    background: rgba(255, 255, 255, 0.88);
+    transition: transform 0.3s;
+}
+
+.review-card:hover {
+    transform: translateY(-7px);
+}
+
+.review-top {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+}
+
+.review-avatar {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    border: 3px solid #ffd46a;
+    object-fit: cover;
+    background: #ffe5a5;
+}
+
+.review-top h3 {
+    font-family: var(--font-body);
+    font-size: 15px;
+}
+
+.review-top span {
+    color: #d89000;
+    letter-spacing: 2px;
+    font-size: 13px;
+}
+
+.review-card > p {
+    font-size: 14px;
+    color: #514657;
+}
+
+/* ===================================
+   12. КОНТАКТЫ И ФОРМА
+=================================== */
+
+.contacts {
+    background: linear-gradient(
+        135deg,
+        rgba(255, 218, 87, 0.94),
+        rgba(255, 143, 132, 0.89)
+    );
+}
+
+.contacts-grid {
+    display: grid;
+    grid-template-columns: 1fr 0.85fr;
+    align-items: center;
+    gap: 70px;
+}
+
+.contacts-info h2 {
+    margin-bottom: 20px;
+}
+
+.contacts-info > p {
+    max-width: 510px;
+    margin-bottom: 30px;
+    color: #403442;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.contact-icon {
+    width: 50px;
+    height: 50px;
+    display: grid;
+    place-items: center;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.7);
+    font-size: 22px;
+}
+
+.contact-item small,
+.contact-item a {
+    display: block;
+}
+
+.contact-item small {
+    color: #51434f;
+    font-size: 12px;
+}
+
+.contact-item a {
+    font-weight: 800;
+    transition: color 0.2s;
+}
+
+.contact-item a:hover {
+    color: #7450c9;
+}
+
+.contact-truck {
+    width: min(100%, 400px);
+    max-height: 220px;
+    margin-top: 20px;
+    object-fit: contain;
+    animation: truckFloat 4.5s ease-in-out infinite;
+}
+
+.contact-form {
+    padding: 35px;
+    border-radius: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.75);
+    box-shadow: var(--shadow);
+    backdrop-filter: blur(12px);
+}
+
+.contact-form h3 {
+    margin-bottom: 10px;
+    font-size: 29px;
+}
+
+.contact-form > p {
+    margin-bottom: 24px;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.contact-form label {
+    display: block;
+    margin: 17px 0 7px;
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.contact-form input {
+    width: 100%;
+    min-height: 50px;
+    padding: 13px 16px;
+    border: 1px solid rgba(23, 18, 29, 0.15);
+    border-radius: 13px;
+    background: rgba(255, 255, 255, 0.86);
+    color: var(--dark);
+    outline: none;
+    transition: border 0.2s, box-shadow 0.2s;
+}
+
+.contact-form input::placeholder {
+    color: #8b808d;
+}
+
+.contact-form input:focus {
+    border-color: #8b5bea;
+    box-shadow: 0 0 0 4px rgba(139, 91, 234, 0.13);
+}
+
+.submit-btn {
+    width: 100%;
+    margin-top: 24px;
+}
+
+.form-note {
+    display: block;
+    margin-top: 14px;
+    text-align: center;
+    font-size: 11px;
+    color: var(--muted);
+}
+
+/* ===================================
+   13. ПОДВАЛ
+=================================== */
+
+.footer {
+    padding: 36px 0;
+    color: white;
+    background: #20182a;
+}
+
+.footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 22px;
+}
+
+.footer-logo {
+    font-size: 22px;
+}
+
+.footer-inner > p {
+    color: #d5cbdc;
+    font-size: 13px;
+}
+
+.footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    font-size: 12px;
+}
+
+.footer-links a {
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: #ffd75b;
+}
+
+.copyright {
+    width: 100%;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    color: #b9afc3;
+    font-size: 12px;
+}
+
+/* ===================================
+   14. ПЛАВАЮЩИЙ WHATSAPP
+=================================== */
+
+.floating-whatsapp {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 50;
+    width: 62px;
+    height: 62px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: #25d366;
+    box-shadow: 0 8px 25px rgba(18, 94, 48, 0.25);
+    transition: transform 0.25s;
+}
+
+.floating-whatsapp:hover {
+    transform: scale(1.12) rotate(-8deg);
+}
+
+.floating-whatsapp img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+}
+
+/* ===================================
+   15. ПОЯВЛЕНИЕ ПРИ ПРОКРУТКЕ
+=================================== */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition:
+        opacity 0.7s ease,
+        transform 0.7s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+.reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===================================
+   16. ПЛАНШЕТЫ
+=================================== */
+
+@media (max-width: 1000px) {
+    .section-padding {
+        padding: 75px 0;
+    }
+
+    .hero {
+        min-height: auto;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr 0.8fr;
+        gap: 10px;
+    }
+
+    .hero-image {
+        min-height: 330px;
+    }
+
+    .main-truck {
+        width: 125%;
+    }
+
+    .image-orbit {
+        width: 270px;
+        height: 270px;
+    }
+
+    .orbit-two {
+        width: 320px;
+        height: 220px;
+    }
+
+    .image-bubble {
+        right: 0;
+    }
+
+    .problems-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .steps-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .contacts-grid {
+        gap: 35px;
+    }
+
+    .price-card {
+        padding: 27px 20px;
+    }
+}
+
+/* ===================================
+   17. МОБИЛЬНЫЕ УСТРОЙСТВА
+=================================== */
+
+@media (max-width: 650px) {
+    .container {
+        width: calc(100% - 32px);
+    }
+
+    .section-padding {
+        padding: 60px 0;
+    }
+
+    h1 {
+        font-size: clamp(39px, 11vw, 58px);
+        letter-spacing: -1.5px;
+    }
+
+    h2 {
+        font-size: clamp(32px, 8vw, 43px);
+    }
+
+    /* Шапка */
+    .header-top {
+        min-height: 75px;
+        gap: 10px;
+    }
+
+    .logo {
+        font-size: 18px;
+    }
+
+    .header-phone {
+        font-size: 11px;
+        white-space: nowrap;
+    }
+
+    .whatsapp {
+        width: 42px;
+        height: 42px;
+    }
+
+    .whatsapp img {
+        width: 38px;
+        height: 38px;
+    }
+
+    .whatsapp-pulse {
+        inset: 2px;
+    }
+
+    .header-truck {
+        display: none;
+    }
+
+    /* Меню прокручивается по горизонтали */
+    .nav {
+        width: 100%;
+        justify-content: flex-start;
+        gap: 10px;
+        padding: 9px 16px 15px;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+
+    .nav::-webkit-scrollbar {
+        display: none;
+    }
+
+    .nav a {
+        flex: 0 0 auto;
+        min-width: auto;
+        padding: 8px 16px;
+        font-size: 12px;
+    }
+
+    /* Первый экран */
+    .hero {
+        padding-top: 60px;
+        padding-bottom: 65px;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .hero-text {
+        order: 1;
+    }
+
+    .hero-image {
+        order: 2;
+        min-height: 240px;
+        margin-top: 10px;
+    }
+
+    .hero-description {
+        margin: 20px auto;
+        font-size: 14px;
+    }
+
+    .hero-actions {
+        justify-content: center;
+    }
+
+    .hero-actions .btn {
+        flex: 1 1 145px;
+        padding: 13px 16px;
+        font-size: 12px;
+    }
+
+    .hero-features {
+        justify-content: center;
+        gap: 10px 14px;
+        font-size: 10px;
+    }
+
+    .main-truck {
+        width: 100%;
+        max-width: 390px;
+    }
+
+    .image-orbit {
+        width: 230px;
+        height: 230px;
+    }
+
+    .orbit-two {
+        width: 290px;
+        height: 190px;
+    }
+
+    .image-bubble {
+        top: 0;
+        right: 0;
+        padding: 9px 12px;
+    }
+
+    .image-bubble > span {
+        font-size: 21px;
+    }
+
+    .image-bubble strong {
+        font-size: 11px;
+    }
+
+    .image-bubble small {
+        font-size: 10px;
+    }
+
+    .scroll-down {
+        bottom: 15px;
+    }
+
+    /* Заголовки */
+    .section-heading {
+        margin-bottom: 32px;
+    }
+
+    .section-heading .eyebrow {
+        font-size: 10px;
+        letter-spacing: 1px;
+    }
+
+    .section-heading p {
+        font-size: 13px;
+    }
+
+    /* Карточки */
+    .problems-grid,
+    .services-grid,
+    .prices-grid,
+    .steps-grid,
+    .reviews-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .problem-card {
+        padding: 23px;
+    }
+
+    .problem-card h3 {
+        font-size: 20px;
+    }
+
+    .problem-card p {
+        font-size: 13px;
+    }
+
+    .service-image {
+        height: 205px;
+    }
+
+    .service-content {
+        padding: 23px;
+    }
+
+    .price-card {
+        padding: 29px 24px;
+    }
+
+    .price-card-popular {
+        transform: none;
+    }
+
+    .price-card-popular:hover {
+        transform: translateY(-5px);
+    }
+
+    .price {
+        font-size: 30px;
+    }
+
+    .step-card {
+        padding: 25px;
+    }
+
+    .step-card h3 {
+        font-size: 20px;
+    }
+
+    /* Контакты */
+    .contacts-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .contacts-info {
+        text-align: center;
+    }
+
+    .contacts-info > p {
+        margin-inline: auto;
+    }
+
+    .contact-item {
+        text-align: left;
+        justify-content: flex-start;
+    }
+
+    .contact-truck {
+        margin-inline: auto;
+        max-height: 180px;
+    }
+
+    .contact-form {
+        padding: 24px 20px;
+        border-radius: 22px;
+    }
+
+    .contact-form h3 {
+        font-size: 26px;
+    }
+
+    .contact-form input {
+        font-size: 16px;
+    }
+
+    /* Подвал */
+    .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 17px;
+    }
+
+    .footer-links {
+        gap: 17px;
+    }
+
+    .copyright {
+        margin-top: 5px;
+    }
+
+    .floating-whatsapp {
+        width: 54px;
+        height: 54px;
+        right: 14px;
+        bottom: 14px;
+    }
+
+    .floating-whatsapp img {
+        width: 39px;
+        height: 39px;
+    }
+}
+
+/* ===================================
+   18. ОЧЕНЬ МАЛЕНЬКИЕ ЭКРАНЫ
+=================================== */
+
+@media (max-width: 360px) {
+    .container {
+        width: calc(100% - 24px);
+    }
+
+    .header-top {
+        gap: 6px;
+    }
+
+    .logo {
+        font-size: 15px;
+    }
+
+    .header-phone {
+        font-size: 10px;
+    }
+
+    .whatsapp {
+        width: 34px;
+        height: 34px;
+    }
+
+    .whatsapp img {
+        width: 31px;
+        height: 31px;
+    }
+
+    h1 {
+        font-size: 36px;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
+    }
+
+    .contact-form {
+        padding: 20px 15px;
+    }
+}
+
+/* ===================================
+   19. УЧЁТ НАСТРОЙКИ УМЕНЬШЕНИЯ АНИМАЦИИ
+=================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
+}
